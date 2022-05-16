@@ -1,0 +1,43 @@
+[Test,Category("abc"),TestCase(TestName ="hello")]
+        public void Test1()
+        {
+            driver = new ChromeDriver();
+            
+            driver.Manage().Window.Maximize();
+
+            //navigate to gmail 
+            driver.Navigate().GoToUrl("https://www.gmail.com");
+
+
+            //Send email address
+            driver.FindElement(By.XPath("//input[@id='identifierId']")).SendKeys("User mail id");
+            driver.FindElement(By.XPath("//div[@id='identifierNext']")).Click();
+
+            IWebElement passwordButton = driver.FindElement(By.XPath("//input[@name='password']"));
+            
+
+            //wait for password field to come up
+            new WebDriverWait(driver, TimeSpan.FromSeconds(100)).Until(ExpectedConditions.ElementToBeClickable((By.XPath("//input[@name='password']"))));
+
+
+            //send password
+            passwordButton.SendKeys("Password for Email");
+            driver.FindElement(By.XPath("//div[@id='passwordNext']")).Click();
+
+            //Click on compose button
+            driver.FindElement(By.XPath("//div[text()='Compose']")).Click();
+
+            //Enter the sender mail id
+            driver.FindElement(By.XPath("//textarea[@name='to']")).SendKeys("Sender e-mail id");
+            //Enter subject to the mail
+            driver.FindElement(By.XPath("//input[@name='subjectbox']")).SendKeys("Incubyte");
+            driver.FindElement(By.XPath("//div[@class='Am Al editable LW-avf tS-tW']")).SendKeys("Automation QA test for Incubyte");
+
+            driver.FindElement(By.XPath("//div[text()='Send']")).Click();
+
+
+
+
+
+
+        }
